@@ -1,0 +1,9 @@
+nav:
+  titelName: BODINWIWAT PH.
+  manu:
+    history: History
+    education: Education
+    experience: Experience
+    knowledge: Knowledge and skills
+    info: Information
+float-right: 'float: right'
