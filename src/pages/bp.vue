@@ -1,12 +1,12 @@
 <template>
   <div
-    class="bp-page overflow-hidden flex justify-center top-0 w-full bg-white shadow-lg"
+    class="bp-page overflow-hidden flex justify-center top-0 w-full "
     :class="fontChange"
   >
-    <bp-nav-bar class="self-center" />
+    <bp-nav-bar class="self-center  w-[1680px]" />
   </div>
-  <div class="content flex justify-center w-full" :class="fontChange">
-    <div class="w-[1680px]">
+  <div class="content flex justify-center w-full h-full" :class="fontChange">
+    <div class="w-full h-full mt-20">
       <router-view />
     </div>
   </div>

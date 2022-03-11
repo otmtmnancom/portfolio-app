@@ -1,20 +1,31 @@
 <template>
-  <div
-    style="
-      background-image: url('/background-index-titel.png');
-      background-size: 1680px;
-    "
-    class="flex justify-center w-full h-[600px] bg-no-repeat bg-start"
-  >
-    <div class="flex justify-center">
-      <div class="">
-      </div>
-    </div>
+  <div class="flex justify-center">
+    <home-index />
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      windowWidth: window.innerWidth,
+    }
+  },
+  computed: {
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize)
+    })
+  },
 
+  beforeUnmount() {
+    window.removeEventListener('resize', this.onResize)
+  },
+  methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth
+    },
+  },
 }
 </script>

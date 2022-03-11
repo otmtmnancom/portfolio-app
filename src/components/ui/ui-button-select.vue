@@ -1,7 +1,7 @@
 <template>
   <div class="ui-button-select">
     <div class="dropdown">
-      <button class="dropbtn flex flex-row justify-center p-2" :value="selected">
+      <button class="dropbtn flex flex-row justify-center p-[9px]" :value="selected">
         <div class="flex justify-center gap-1">
           <span class="material-icons text-lg self-center">{{ icon || '' }}</span>
           <p class="text-center py-1">{{ items.find(e => e.value === selected).text }}</p>
@@ -50,8 +50,7 @@ export default {
   min-width: 120px;
   width: 100%;
   outline: none;
-  color: #ffff;
-  background-color: #1de9b6;
+  color: black;
   box-sizing: border-box;
   transform-style: preserve-3d;
   transform-origin: 50% 0%;
@@ -85,6 +84,7 @@ export default {
   }
 
   .dropbtn {
+    background-color: white;
     box-shadow: 0px 10px 10px -6px black;
     transform: rotate3d(1, 0, 0, 80deg);
   }

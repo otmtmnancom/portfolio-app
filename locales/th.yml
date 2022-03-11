@@ -1,7 +1,8 @@
 nav:
-  titelName : BODINWIWAT PH.
-  manu :
-    history : ประวัติส่วนตัว
+  titelName: BODINWIWAT PH.
+  manu:
+    home: หน้าหลัก
+    about: ประวัติส่วนตัว
     education: การศึกษา
     experience: ประสบการณ์
     knowledge: ความรู้และทักษะ
