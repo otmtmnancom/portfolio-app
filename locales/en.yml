@@ -1,9 +1,11 @@
 nav:
   titelName: BODINWIWAT PH.
   manu:
+    home : Home
+    about: About
     history: History
     education: Education
     experience: Experience
     knowledge: Knowledge and skills
     info: Information
-float-right: 'float: right'
+float-right: "float: right"
