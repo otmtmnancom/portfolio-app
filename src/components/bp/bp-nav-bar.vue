@@ -1,31 +1,8 @@
 <template>
   <div :class="`bp-nav-bar w-full`">
-    <!-- <div
-      v-if="!isTopManu"
-      class="w-full h-8 bg-dark-400 shadow-current flex justify-end px-2 gap-2"
-    >
-      <div class="text-light-50 self-center flex gap-2">
-        <span class="material-icons text-lg self-center">phone</span>
-        <p class="self-center text-sm">093-168-3755</p>
-      </div>
-      <a
-        href="https://www.facebook.com/notbabia/"
-        target="_blank"
-        class="text-light-50 self-center flex gap-2 w-5 h-5 bg-light-blue-700 justify-center rounded"
-      >
-        <img src="/fcebook.png" class="w-2 self-end" />
-      </a>
-      <a
-        href="https://line.me/ti/p/YuJARGubsx/"
-        target="_blank"
-        class="text-light-50 self-center flex gap-2 w-5 h-5 bg-[#06C755] justify-center rounded"
-      >
-        <img src="/line.png" class="w-4 self-center" />
-      </a>
-    </div>-->
     <div
       class="flex justify-between align-bottom font-extralight"
-      :class="showHumbucker ? 'bg-[white]' : ''"
+      :class="showHumbucker && !isHumbucker ? 'bg-[white]' : ''"
     >
       <div
         @click="() => {
@@ -35,25 +12,20 @@
         }"
         class="logo flex flex-shrink-0 px-2 cursor-pointer"
       >
-        <img src="/icon-bp.png" class="w-3 self-center" />
-        <!-- <span
-          :class="showHumbucker ? ' mx text-lg px-2 self-center text-black' : 'mx text-lg px-2 self-center'"
-        >{{ $t('nav.titelName') }}</span> -->
+        <!-- <img src="/icon-bp.png" class="w-3 self-center" /> -->
+        <span class="px-3 text-lg self-center font-dancing">Bodinwiwat {{ paramUrl }}</span>
       </div>
       <div v-if="isHumbucker" class="flex justify-center">
-        <div class="flex-shrink-0 self-center ">
+        <div class="flex-shrink-0 self-center">
           <template v-for=" manu of menuList" :key="manu.key">
             <button
-              :class="`p-3 ${selcetManu === manu.key ? 'border-[#1de9b6] text-[#1de9b6] border-b-3' : 'hover:( bg-gray-200)'}`"
+              :class="`p-3 ${paramUrl === manu.key ? 'border-[#1de9b6] text-[#1de9b6] border-b-3' : 'text-amber-300 font-medium hover:( text-[#1de9b6] )'}`"
               @click="() => {
                 $router.replace(manu.to)
                 selcetManu = manu.key
               }"
             >
-              <label class="flex gap-1 justify-center">
-                <!-- <span class="material-icons self-center">{{ manu.icon || '' }}</span> -->
-                {{ $t(`nav.manu.${manu.key}`) }}
-              </label>
+              <label class="flex gap-1 justify-center">{{ $t(`nav.manu.${manu.key}`) }}</label>
             </button>
           </template>
         </div>
@@ -66,7 +38,7 @@
           />
         </div>
       </div>
-      <div v-else class="flex">
+      <div v-else class="flex px-2">
         <button
           class="self-center py-3 px-4 bg-[#1de9b6]"
           :class="showHumbucker && !isHumbucker ? 'bg-white' : 'bg-transparent'"
@@ -75,23 +47,31 @@
           }"
         >
           <span
-            class="material-icons text-lg text-black"
+            class="material-icons text-lg text-amber-300"
             :class="showHumbucker && !isHumbucker ? 'text-[#1de9b6] ' : ''"
           >apps</span>
         </button>
+        <button
+          class="flex flex-row items-center gap-2"
+          @click="() => {
+            lang = lang === 'th' ? 'en' : 'th'
+          }"
+        >
+          <span class="material-icons text-sm font-mono text-amber-300 uppercase">{{ lang }}</span>
+        </button>
       </div>
     </div>
-    <div v-if="showHumbucker && !isHumbucker" class="font-extralight text-white shadow-md">
+    <div v-if="showHumbucker && !isHumbucker" class="text-white shadow-md">
       <template v-for=" manu of menuList" :key="manu.key">
         <label
-          class="w-full h-[50px] bg-black flex justify-center gap-2 cursor-pointer hover:(bg-[#1de9b6])"
+          :class="!isHumbucker ? 'froward' : ''"
+          class="w-full h-[50px] bg-black flex justify-center gap-2 cursor-pointer border-b-1 hover:(bg-[#1de9b6])"
           @click="() => {
             $router.replace(manu.to)
             showHumbucker = false
             selcetManu = manu.key
           }"
         >
-          <!-- <span class="material-icons self-center">{{ manu.icon || '' }}</span> -->
           <div class="self-center">{{ $t(`nav.manu.${manu.key}`) }}</div>
         </label>
       </template>
@@ -107,7 +87,7 @@ export default {
       default() {
         return [
           {
-            key: 'home',
+            key: 'bp',
             icon: 'home',
             to: '/bp',
           },
@@ -161,6 +141,10 @@ export default {
         this.$i18n.locale = v
       },
     },
+    paramUrl() {
+      let path = this.$route.fullPath.split('/')
+      return path[path.length - 1]
+    },
     isTopManu() {
       let lastKnownScrollPosition = 0
       let ticking = false
@@ -183,7 +167,13 @@ export default {
       return this.windowWidth > 1000
     },
   },
-
+  watch: {
+    windowWidth(val) {
+      if (val > 1000 && this.showHumbucker) {
+        this.showHumbucker = false
+      }
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
@@ -200,3 +190,31 @@ export default {
   },
 }
 </script>
+
+<style>
+@font-face {
+  font-family: DancingScrip;
+  src: url("../../../public/fonts/DancingScript-SemiBold.ttf");
+}
+
+.font-dancing {
+  font-family: DancingScrip;
+}
+
+.froward {
+  -webkit-animation-name: humbucker;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes humbucker {
+  from {
+    -webkit-transform: translateY(-100%);
+  }
+  to {
+    -webkit-transform: translateY(0%);
+  }
+}
+</style>

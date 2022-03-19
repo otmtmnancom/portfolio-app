@@ -1,18 +1,14 @@
 <template>
   <div class="ui-button-select">
     <div class="dropdown">
-      <button class="dropbtn flex flex-row justify-center p-[9px]" :value="selected">
-        <div class="flex justify-center gap-1">
+      <button class="dropbtn text-amber-300 flex flex-row justify-center p-[9px]" :value="selected">
+        <div class="flex justify-center font-medium gap-1">
           <span class="material-icons text-lg self-center">{{ icon || '' }}</span>
           <p class="text-center py-1">{{ items.find(e => e.value === selected).text }}</p>
         </div>
-        <!-- <div>
-          <span class="material-icons text-lg self-center">expand_more</span>
-        </div>-->
       </button>
 
-      <div class="dropdown-content">
-        <!-- <button class="fle">{{ items.find(e => e.value !== selected).text }}</button> -->
+      <div class="dropdown-content text-amber-300 font-medium">
         <a
           class="block text-canter h-full text-center py-2"
           v-for="item of items.filter(e => e.value !== selected) "
@@ -50,7 +46,6 @@ export default {
   min-width: 120px;
   width: 100%;
   outline: none;
-  color: black;
   box-sizing: border-box;
   transform-style: preserve-3d;
   transform-origin: 50% 0%;
