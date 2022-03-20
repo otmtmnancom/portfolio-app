@@ -4,7 +4,7 @@
       <source src="/video.mp4" type="video/mp4" />
     </video>
     <img src="/background-index.png" id="myVideo" />
-    <img src="/not.png" class="absolute object-cover right-0 -bottom-10" />
+    <img src="/not.png" class="cursor-pointer absolute object-cover right-0 -bottom-10" />
     <div
       class="fixed flex justify-center items-center 2xl:(w-[100%]) w-[1680px] h-[100%] max-h-[1050px]"
     >
@@ -14,23 +14,21 @@
         >
           <div
             class="2xl:(text-[80px]) @sm:() @md:(text-[110px] bg-white) @:lg() @xl:() text-[40px]"
-          >Hi There,</div>
+          >{{ $t(`home.1`) }}</div>
           <div
             class="2xl:(text-[60px]) @sm:() @md:(text-[55px]) @:lg() @xl:() text-[25px] flex flex-row"
           >
-            <span>I'm</span>
+            <span>{{ $t(`home.2`) }}</span>
             &nbsp;
-            <span
-              class="text-green-400 2xl:(text-blue-600)"
-            >Bodinwiwat Phunsiriwon</span>
+            <span class="text-green-400 2xl:(text-blue-600)">{{ $t(`home.3`) }}</span>
           </div>
           <div class="2xl:(text-[60px]) @sm:() @md:(text-[40px]) @:lg() @xl:() text-[25px]">
-            <span>You can call me &nbsp;</span>
-            <span class="text-green-400 2xl:(text-blue-600)">Not</span>
+            <span>{{ $t(`home.4`) }} &nbsp;</span>
+            <span class="text-green-400 2xl:(text-blue-600)">{{ $t(`home.5`) }}</span>
           </div>
           <div class="2xl:(text-[60px]) @sm:() @md:(text-[40px]) @:lg() @xl:() text-[25px]">
-            <span>I'm into &nbsp;</span>
-            <span class="text-green-400 2xl:(text-blue-600)">Web Developer</span>
+            <span>{{ $t(`home.6`) }} &nbsp;</span>
+            <span class="text-green-400 2xl:(text-blue-600)">{{ $t(`home.7`) }}</span>
           </div>
           <div>
             <button
@@ -39,7 +37,7 @@
               }"
               class="button rounded-md text-white flex flex-row justify-center gap-2 bg-green-400 px-3 py-2"
             >
-              <span class="self-center">About Me</span>
+              <span class="self-center">{{ $t(`home.8`) }}</span>
             </button>
           </div>
           <div class="flex flex-row gap-2">

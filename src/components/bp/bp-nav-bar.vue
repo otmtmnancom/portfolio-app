@@ -13,13 +13,13 @@
         class="logo flex flex-shrink-0 px-2 cursor-pointer"
       >
         <!-- <img src="/icon-bp.png" class="w-3 self-center" /> -->
-        <span class="px-3 text-lg self-center font-dancing">Bodinwiwat {{ paramUrl }}</span>
+        <span class="px-3 text-lg self-center font-dancing">Bodinwiwat</span>
       </div>
       <div v-if="isHumbucker" class="flex justify-center">
         <div class="flex-shrink-0 self-center">
           <template v-for=" manu of menuList" :key="manu.key">
             <button
-              :class="`p-3 ${paramUrl === manu.key ? 'border-[#1de9b6] text-[#1de9b6] border-b-3' : 'text-amber-300 font-medium hover:( text-[#1de9b6] )'}`"
+              :class="`p-3 ${paramUrl === manu.key ? 'border-[#1de9b6] font-medium text-[#1de9b6] border-b-3' : 'text-amber-300 font-medium hover:( text-[#1de9b6] )'}`"
               @click="() => {
                 $router.replace(manu.to)
                 selcetManu = manu.key
@@ -64,8 +64,8 @@
     <div v-if="showHumbucker && !isHumbucker" class="text-white shadow-md">
       <template v-for=" manu of menuList" :key="manu.key">
         <label
-          :class="!isHumbucker ? 'froward' : ''"
-          class="w-full h-[50px] bg-black flex justify-center gap-2 cursor-pointer border-b-1 hover:(bg-[#1de9b6])"
+          :class="!isHumbucker ? 'froward' : 'backward'"
+          class="w-full h-[50px] bg-black flex justify-center gap-2 cursor-pointer hover:(bg-[#1de9b6])"
           @click="() => {
             $router.replace(manu.to)
             showHumbucker = false
@@ -185,7 +185,7 @@ export default {
   },
   methods: {
     onResize() {
-      this.windowWidth = window.innerWidth
+      this.windowWidth = window.innerWidth || 0
     },
   },
 }
@@ -200,12 +200,18 @@ export default {
 .font-dancing {
   font-family: DancingScrip;
 }
-
+.backward {
+  -webkit-animation-name: humbucker;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: backwards;
+}
 .froward {
   -webkit-animation-name: humbucker;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease;
+  -webkit-animation-timing-function: ease-out;
   -webkit-animation-fill-mode: forwards;
 }
 
